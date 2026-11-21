@@ -1,126 +1,285 @@
-# Hey, I'm Heera 👋
+# Engineering & Technology Portfolio
 
-### Computer Science & Engineering Student | Software Developer | Exploring Cybersecurity & AI
-
-I'm **Wahengbam Heramani Singh**, a Computer Science and Engineering student at **NIT Manipur, India**.
-
-I enjoy turning ideas into working software, exploring new technologies, and building practical solutions to real-world problems. My interests span software development, cybersecurity, artificial intelligence, and systems that make technology more accessible and useful.
-
-This repository contains my personal portfolio — a place to share what I'm building, what I'm learning, and the projects I'm proud to work on.
+> A technology-focused portfolio documenting implemented systems, experimental research, and infrastructure explorations across AI, distributed systems, cybersecurity, and full-stack engineering.
 
 ---
 
-## 🚀 Featured Projects
+## Technology Overview
 
-### 1. PAANGBA — AI-Assisted Financial Access & Lender Matching
+This repository hosts a personal portfolio built on top of the [Cleanfolio](https://github.com/rjshkhr/cleanfolio) React template (MIT License). The portfolio itself is a static React application, but the projects it documents span a wide range of engineering domains — from real-time multiplayer systems and AI-assisted platforms to offline mesh networking and local LLM inference.
 
-A platform designed to connect citizens seeking financial assistance with relevant private companies through consent-based information sharing.
+The focus is on **building things that work**, understanding systems at a fundamental level, and experimenting with emerging technologies without overclaiming maturity.
 
-**Focus areas:** Document verification, forgery detection, AI-assisted matching, and vernacular AI model fine-tuning.
+---
 
-### 2. HOUSEY — Real-Time Multiplayer Gaming Platform
+## Technology Ecosystem
 
-A real-time online Housie (Tambola) platform with automated gameplay and multiplayer functionality.
+### Implemented Systems
 
-**Built with:** Django, React, WebSockets, Redis, PostgreSQL, and Celery.
+| Project | Domain | Status | Stack |
+|---|---|---|---|
+| **PAANGBA** | AI-assisted financial access & lender matching | In development | Python, Django, React, AI/ML (document verification, forgery detection, vernacular model fine-tuning) |
+| **HOUSIE** | Real-time multiplayer gaming platform | Deployed | Django, Django Channels, WebSockets, Redis, Celery, React, Docker, Nginx, Linux VPS |
+| **Coaching Website** | Serverless content management | Live | React, Google Apps Script, Google Drive, Google Sheets |
+| **Offline Mesh Communication** | Disaster relief camp networking | In progress | Mesh networking, offline-first architecture |
 
-### 3. Coaching Website — Serverless Content Management
+### Explored Technologies
 
-A content platform designed to help students access educational resources while allowing teachers to publish PDFs and images.
+These are technologies I have studied, experimented with, or integrated at a prototype level:
 
-**Built around:** React, Google Drive, and Google Sheets.
+- **AI/ML**: RAG (Retrieval-Augmented Generation), Ollama, Qdrant (vector database), LLM grounding, local LLMs (Llama, Qwen), embeddings, SMT/Z3 constraint reasoning
+- **Real-time systems**: WebSockets, Django Channels, Redis pub/sub, Celery task queues
+- **Infrastructure**: Docker, Nginx (reverse proxy + SSL), Linux VPS, PostgreSQL
+- **Languages**: Python, C, JavaScript, TypeScript, SQL
+
+### Planned / Future Explorations
+
+- Vernacular AI model fine-tuning for low-resource languages
+- Zero-trust architecture and network security hardening
+- Edge computing and distributed inference
+- Peer-to-peer protocols beyond mesh networking
+- Formal verification of AI-generated recommendations
+
+---
+
+## Architecture Diagrams
+
+### HOUSIE — Real-Time Multiplayer Platform
+
+```mermaid
+graph TB
+    Client[React Frontend] -->|WebSocket| Nginx[Nginx Reverse Proxy]
+    Nginx -->|WS| Channels[Django Channels]
+    Channels --> Redis[Redis Pub/Sub]
+    Channels --> Celery[Celery Workers]
+    Channels --> DB[(PostgreSQL)]
+    Celery --> DB
+    Nginx -->|HTTP| Django[Django REST API]
+    Django --> DB
+```
+
+### PAANGBA — AI-Assisted Lender Matching
+
+```mermaid
+graph LR
+    Citizen[Citizen] -->|Consent-based sharing| Platform[PAANGBA Platform]
+    Platform --> DocCheck[Document Verification]
+    Platform --> Forgery[Forgery Detection]
+    Platform --> LenderMatch[Lender Matching Engine]
+    DocCheck --> VernacularAI[Vernacular AI Model]
+    LenderMatch --> Lenders[Private Lenders]
+    Platform --> Z3[SMT/Z3 Constraint Verification]
+```
+
+### Offline Mesh Communication — Disaster Relief
+
+```mermaid
+graph LR
+    CampA[Relief Camp A] -->|Mesh Node| MeshNet[Offline Mesh Network]
+    CampB[Relief Camp B] -->|Mesh Node| MeshNet
+    CampC[Relief Camp C] -->|Mesh Node| MeshNet
+    MeshNet --><|message|>Store & Forward| Data[Information Distribution]
+    Internet((Internet)) -.->|When available| MeshNet
+```
+
+---
+
+## Engineering Projects (Architecture-Focused)
+
+### 1. PAANGBA — AI-Assisted Financial Access & Lender-Matching Platform
+
+**Domain:** Applied AI / Financial Inclusion  
+**Status:** In development (2026)
+
+A platform designed to connect citizens seeking financial assistance with relevant private lenders through consent-based information sharing. The system explores:
+
+- **Document verification** and forgery detection pipelines
+- **AI-assisted matching** between applicants and lenders
+- **Vernacular AI model fine-tuning** for low-resource language support
+- **SMT/Z3 constraint reasoning** to verify AI-generated recommendations against structured eligibility rules, reducing hallucination risk
+
+The architecture treats AI as a recommendation layer, not a decision layer — every AI output is cross-checked against explicit logical constraints.
+
+### 2. HOUSIE — Real-Time Multiplayer Gaming Platform
+
+**Domain:** Real-time systems / Event-driven architecture  
+**Status:** Deployed (2026)
+
+A real-time multiplayer Housie (Tambola) platform with automated gameplay, ticket management, and prize validation.
+
+**Key engineering decisions:**
+- **Django Channels** + **WebSockets** for persistent real-time connections
+- **Redis pub/sub** for message broadcasting across instances
+- **Celery** for background game operations (number calling, prize validation)
+- **Docker** containerization with **Nginx** reverse proxy and SSL on a Linux VPS
+- **PostgreSQL** for persistent game state and player data
+
+### 3. Coaching Website — Serverless Content Management Platform
+
+**Domain:** Serverless architecture / Cost optimization  
+**Status:** Live (2026)
+
+A platform for students to access learning materials and teachers to upload/manage educational resources.
+
+**Key engineering decisions:**
+- **Google Apps Script** as the backend runtime (serverless, zero hosting cost)
+- **Google Drive** for file storage (PDFs, images, resources)
+- **Google Sheets** for structured data and activity logging
+- No separate database or hosting required — leverages existing Google infrastructure
 
 ### 4. Offline Mesh Communication for Disaster Relief Camps
 
-An offline-first communication project being developed to help nearby relief camps exchange and forward important information when internet connectivity is unavailable.
+**Domain:** Distributed systems / Resilient networking  
+**Status:** In progress (2026)
 
-**Focus areas:** Mesh networking, offline communication, information forwarding, and disaster-response support.
+An offline-first communication system designed to connect nearby relief camps through a mesh network when internet connectivity breaks down.
 
----
+**Key concepts:**
+- **Store-and-forward** message routing between nodes
+- **Information forwarding** without continuous internet
+- **Offline-first** architecture for disaster-response resilience
+- Designed for environments with unreliable or no connectivity
 
-## 🛠️ Technologies & Tools
+### 5. AI-Driven Scheme Matching for Marginalized Entrepreneurs
 
-Here are some of the technologies I've been exploring and working with.
+**Domain:** Applied AI / Government technology  
+**Context:** Smart India Hackathon 2026 (Team Leader)
 
-**Programming languages**
+A solution to match entrepreneurs with relevant government schemes based on eligibility.
 
-Python · C · JavaScript · TypeScript · SQL
+**Key concepts:**
+- **RAG** (Retrieval-Augmented Generation) for scheme retrieval
+- **Structured constraint logic** (SMT/Z3) for eligibility verification
+- **Grounded recommendations** — AI generates suggestions, logic validates eligibility
+- Multilingual support considerations
 
-**Frameworks & development**
+### 6. Applied LLM & RAG Pipeline Architecture Exploration
 
-React · Django · Django REST Framework · WebSockets
+**Domain:** AI systems research  
+**Context:** Applied research (2026)
 
-**Databases & infrastructure**
+Evaluated local AI systems and developed workflows for reliable, context-aware responses.
 
-PostgreSQL · Redis · Docker · Nginx · Linux · Git
-
-**AI & emerging technologies**
-
-RAG · Ollama · Qdrant · LLMs · Embeddings · AI-assisted workflows
-
----
-
-## 🎓 Education
-
-**National Institute of Technology Manipur**
-
-B.Tech in Computer Science and Engineering
-
-
-
----
-
-## 🏆 Highlights
-
-- Team Leader — Smart India Hackathon 2026 internal selection at NIT Manipur.
-- 5th position — AI for Seva Hackathon 2026, among 52 participating teams.
-- Recognised for the proposed PAANGBA solution for potential incubation and grant opportunities.
-- Intra-NIT Football Champion.
-- Selected representative for Inter-NIT Badminton.
+**Key concepts:**
+- Local LLM inference (Ollama, Llama, Qwen)
+- Dense embeddings and semantic search
+- Context-grounding checks to reduce unsupported outputs
+- Linux service administration (containers, reverse proxies, caching, task queues)
+- Practical network security exposure
 
 ---
 
-## 🌱 What I'm Exploring
+## Infrastructure & Development Environment
 
-I'm continuously learning and experimenting with:
+### Tools & Platforms
 
-- Linux and cybersecurity fundamentals.
-- AI agents, RAG systems, and local LLMs.
-- Backend engineering and distributed systems.
-- Offline-first and resilient communication technologies.
-- Cloud infrastructure and DevOps.
+| Category | Technologies |
+|---|---|
+| **Languages** | Python, C, JavaScript, TypeScript, SQL |
+| **Backend** | Django, Django REST Framework, WebSockets, Celery, Redis |
+| **Frontend** | React, Material UI |
+| **Databases** | PostgreSQL, Redis (in-memory) |
+| **AI/ML** | Ollama, Qdrant, RAG pipelines, embeddings, SMT/Z3 |
+| **Containers** | Docker, Nginx |
+| **OS** | Linux, Linux VPS |
+| **Version Control** | Git |
+| **Portfolio** | React 17, Create React App, Material-UI, gh-pages |
+
+### Portfolio Architecture
+
+```mermaid
+graph TB
+    subgraph "Frontend"
+        React[React 17]
+        MUI[Material-UI]
+        CSS[CSS Variables]
+    end
+    subgraph "Data Layer"
+        PortfolioJS[portfolio.js]
+        PublicAssets[public/images]
+        ResumePDF[Resume PDF]
+    end
+    subgraph "Build & Deploy"
+        CRA[Create React App]
+        Build[yarn build]
+        Deploy[yarn deploy]
+        GH[GitHub Pages]
+    end
+    React --> PortfolioJS
+    React --> PublicAssets
+    CRA --> Build
+    Build --> Deploy
+    Deploy --> GH
+```
 
 ---
 
-## 🤝 Let's Connect
+## Hackathons & Recognition
 
-I'm always interested in connecting with people who enjoy building things, solving problems, and exploring new ideas.
-
-- **GitHub:** [@heeraOp](https://github.com/heeraOp)
-- **LinkedIn:** [Connect with me](https://linkedin.com/in/wahengbam-heeramani-singh-6648263a3)
-- **GitHub Sponsors:** [Support my open-source work](https://github.com/sponsors/heeraOp)
+| Event | Role | Result |
+|---|---|---|
+| Smart India Hackathon 2026 | Team Leader | Selected through NIT Manipur's internal hackathon for the National Stage |
+| AI for Seva Hackathon 2026 | Team Leader | 5th prize among 52 teams (Department of IT, Government of Manipur) |
+| PAANGBA Solution | Contributor/Lead Research | Recognised with potential incubation and grant opportunities |
+| Intra-NIT Football | Player | Champion |
+| Inter-NIT Badminton | Representative | Selected |
 
 ---
 
-## 💻 Running This Portfolio Locally
+## Academic Background
 
-Want to explore the source code or run the website locally?
+**National Institute of Technology Manipur** — B.Tech in Computer Science & Engineering
+
+- **Semester:** 3rd (2025–2029, ongoing)
+- **CGPA:** 8.33/10
+- **Coursework:** Data Structures & Algorithms, Discrete Mathematics, Digital Logic Design, Programming in Python, Mathematics for Computing, Managerial Economics
+
+---
+
+## Technology Badges
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![C](https://img.shields.io/badge/C-00599C?style=flat-square&logo=c&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![SQL](https://img.shields.io/badge/SQL-4479A1?style=flat-square&logo=postgresql&logoColor=white)
+![Django](https://img.shields.io/badge/Django-092E20?style=flat-square&logo=django&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
+![Redis](https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
+![Nginx](https://img.shields.io/badge/Nginx-009639?style=flat-square&logo=nginx&logoColor=white)
+![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black)
+![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white)
+![Ollama](https://img.shields.io/badge/Ollama-000000?style=flat-square&logo=ollama&logoColor=white)
+
+---
+
+## Resources & References
+
+| Resource | Description |
+|---|---|
+| [Cleanfolio Template](https://github.com/rjshkhr/cleanfolio) | Original portfolio template (MIT License) |
+| [Django Channels](https://channels.readthedocs.io/) | WebSocket support for Django |
+| [Ollama](https://ollama.ai/) | Local LLM inference |
+| [Qdrant](https://qdrant.tech/) | Vector database for semantic search |
+| [Z3 Theorem Prover](https://github.com/Z3Prover/z3) | SMT solver for constraint verification |
+| [Docker Documentation](https://docs.docker.com/) | Containerization reference |
+| [Nginx Documentation](https://nginx.org/en/docs/) | Reverse proxy and web server |
+
+---
+
+## Running Locally
 
 ```bash
-# Clone the repository
 git clone https://github.com/heeraOp/github_portfolio.git
-
-# Enter the project directory
 cd github_portfolio
-
-# Install dependencies
+cd cleanfolio
 yarn install
-
-# Start the development server
 yarn start
 ```
 
-To create a production build:
+Production build:
 
 ```bash
 yarn build
@@ -128,10 +287,12 @@ yarn build
 
 ---
 
-## 📌 A Small Note
+## License
 
-This portfolio started from the Cleanfolio template and has been customized with my own information, projects, and presentation. The original license and applicable attribution are retained in the repository.
+MIT License — see [LICENSE](LICENSE) for details.
 
-Thanks for stopping by and taking a look at my work. Feel free to explore the projects, share feedback, or connect with me!
+Original template: [Cleanfolio](https://github.com/rjshkhr/cleanfolio) by Raj Shekhar (MIT License).
 
-**Keep learning. Keep building. Keep experimenting.** 🚀
+---
+
+*This README documents verified implementations and explorations. Technologies listed under "explored" represent study and experimentation, not production deployment.*
